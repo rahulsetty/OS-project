@@ -1,0 +1,56 @@
+1. #include&lt;stdio.h&gt;
+2. #include&lt;conio.h&gt;
+3. int main()
+4. {
+5.     int bt[10],p[10],n,temp,i,j,wt[10],sum=0;
+6.     float avg;
+7.     printf(&quot;Enter total no of proces:&quot;);
+8.     scanf(&quot;%d&quot;,&amp;n);
+9.     printf(&quot;\n Enter burst time for each process:-
+&quot;);
+10.     for(i=0;i&lt;n;i++)
+11.     {
+12.         printf(&quot;\nBurst time of process
+P%d:&quot;,i);
+13.         scanf(&quot;%d&quot;,&amp;bt[i]);
+14.         p[i]=i;
+15.     }
+16.     for(i=0;i&lt;n-1;i++)
+17.     {
+18.         for(j=i+1;j&lt;n;j++)
+19.         {
+20.             if(bt[i]&gt;bt[j])
+21.             {
+22.                 temp=bt[i];
+23.                 bt[i]=bt[j];
+24.                 bt[j]=temp;
+25.                 temp=p[i];
+26.                 p[i]=p[j];
+27.                 p[j]=temp;
+28.             }
+29.         }
+30.     }
+31.     wt[0]=0;
+32.     for(i=1;i&lt;n;i++)
+33.     {
+
+34.         wt[i]=wt[i-1]+bt[i-1];
+35.     }
+36.     for(i=0;i&lt;n;i++)
+37.     {
+38.         sum+=wt[i];
+39.     }
+40.     avg=(float)sum/n;
+41.     printf(&quot;\n Waiting time for each process:-
+&quot;);
+42.     for(i=0;i&lt;n;i++)
+43.     {
+44.         printf(&quot;\n Waiting time for process P%d
+is %d sec.&quot;,p[i],wt[i]);
+45.        
+46.     }
+47.     printf(&quot;\n Average waiting time is %f
+sec.&quot;,avg);
+48.     getch();
+49.     return 0;
+50. }
